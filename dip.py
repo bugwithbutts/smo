@@ -103,7 +103,7 @@ def launchModel(events, tasks, numberJudges):
 
     return queue.getMeanWaitTime()
 
-# Moments of time when new task was sent
+# Moments of time when tasks were sent
 events = genEvents(eventsInSec = 0.01, timeIntervalInSec = 5 * 60 * 60)
 
 # Average time for task for every task
