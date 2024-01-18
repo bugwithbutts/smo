@@ -36,7 +36,7 @@ class OnlyAskQueue(object):
             if i[0] < minTask:
                 minTask = i[0]
                 minIndex = ind            
-            ind += 1
+            ind += 1        
         
         # Skip ahead possible min element        
         if minTask <= self.queue[0][2]:
@@ -68,7 +68,7 @@ class OnlyAskQueue(object):
                 # Begin process new request
                 self.newTaskForJudge(judge)                
 
-    def push(self, testingTime, moment):        
+    def push(self, testingTime, moment):         
         self.queue.append([testingTime, moment, testingTime // 2])        
 
     def getMeanWaitTime(self):  

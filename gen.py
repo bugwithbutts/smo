@@ -1,7 +1,7 @@
 import numpy as np
 import random
 
-def genEvents(eventsInSec, timeIntervalInSec):
+def genEvents(eventsInSec, timeIntervalInSec, numberOfTasks):
 
     lastEventTime = 0
     events = []
@@ -11,7 +11,8 @@ def genEvents(eventsInSec, timeIntervalInSec):
         # Interval between events is exponential distributed
         delta = np.random.exponential(scale = 100 / eventsInSec)
         lastEventTime += delta
-        events.append(int(lastEventTime))        
+        # Event = [time of event, number of task]
+        events.append([int(lastEventTime), random.randrange(numberOfTasks)])        
 
     return events
   

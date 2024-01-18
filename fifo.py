@@ -46,7 +46,7 @@ class FifoQueue(object):
                 # Begin process new request
                 self.newTaskForJudge(judge)
 
-    def push(self, testingTime, moment):        
+    def push(self, testingTime, moment):              
         self.queue.append([testingTime, moment])
 
     def getMeanWaitTime(self):        
