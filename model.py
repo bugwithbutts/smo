@@ -11,8 +11,8 @@ def launchModel(events, tasks, queue):
     # Iterate through santiseconds(1/100 of second) from first event to last
     for moment in range(events[0][0], events[-1][0] + 1): 
 
-        # If some task was sent add it to the queue   
-        if events[nextEventIndex][0] == moment:            
+        # If some tasks were sent add it to the queue   
+        while nextEventIndex != len(events) and events[nextEventIndex][0] == moment:            
             queue.push(testingTime = tasks[events[nextEventIndex][1]], moment = moment)
             nextEventIndex += 1
 

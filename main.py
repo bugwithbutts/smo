@@ -6,7 +6,7 @@ from gen import genEvents, genTasks
 from model import launchModel
 
 # Moments of time when tasks were sent
-events = genEvents(eventsInSec = 0.01, timeIntervalInSec = 5 * 60 * 60, numberOfTasks = 13)
+events = genEvents(eventsInSec = 0.1, timeIntervalInSec = 10 * 60, numberOfTasks = 13)
 
 # Average testing time for every task
 tasks = genTasks(minTestingTimeInSec = 5, maxTestingTimeInSec = 200, numberOfTasks = 13)
