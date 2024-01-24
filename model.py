@@ -8,7 +8,7 @@ def launchModel(events, tasks, queue):
 
     nextEventIndex = 0
 
-    # Iterate through santiseconds(1/100 of second) from first event to last
+    # Iterate through seconds from first event to last
     for moment in range(events[0][0], events[-1][0] + 1): 
 
         # If some tasks were sent add it to the queue   
@@ -25,4 +25,4 @@ def launchModel(events, tasks, queue):
         queue.tact(moment)
         moment += 1
 
-    return queue.getMeanWaitTime()
+    queue.printStatistic()

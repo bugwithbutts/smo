@@ -49,9 +49,10 @@ class FifoQueue(object):
     def push(self, testingTime, moment):              
         self.queue.append([testingTime, moment])
 
-    def getMeanWaitTime(self):        
-        print("Max fifo time: ", max(self.waitTimes) / 100 / 60)                   
-        return np.mean(self.waitTimes)
+    def printStatistic(self):        
+        # Print in minutes
+        print("Max fifo time: ", max(self.waitTimes) / 60)          
+        print("Average fifo time: ", np.mean(self.waitTimes) / 60)                     
 
     def empty(self):        
         return len(self.queue) != 0 or max(self.remainTimeOnJudge) == 0
