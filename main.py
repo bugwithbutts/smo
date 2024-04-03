@@ -12,7 +12,7 @@ from maxfirst import MaxFirstQueue
 # Parametrs of contest
 eventsInSec = 1 / 30
 numberOfTasks = 13
-eps = 0
+eps = 0.7
 
 # Generating events
 events1 = genEvents(eventsInSec = eventsInSec, timeIntervalInSec = 3 * 60 * 60, numberOfTasks = numberOfTasks)
@@ -41,7 +41,7 @@ tasks1 = [6, 20, 50, 35, 30]
 tasks2 = [[1 for _ in range(6)], [2 for _ in range(10)], [2 for _ in range(25)], [5 for _ in range(7)], [1 for _ in range(30)]]
 tasks3 = [[2 for _ in range(18)], [2 for _ in range(18)], [1 for _ in range(1)], [2 for _ in range(36)], [2 for _ in range(45)], [2 for _ in range(38)], [2 for _ in range(32)], [2 for _ in range(45)], [2 for _ in range(156)], [5 for _ in range(47)], [8 for _ in range(80)], [4 for _ in range(90)], [2 for _ in range(39)]]
 
-# Run models
+# # Run models
 # launchModel(events = events1, tasks = tasks1, queue = FifoQueue(numberJudges = 4, eps = eps))
 # launchModel(events = events1, tasks = tasks1, queue = OnlyAskQueue(numberJudges = 4, eps = eps))
 # launchModel(events = events1, tasks = tasks1, queue = MaxFirstQueue(numberJudges = 4, eps = eps))

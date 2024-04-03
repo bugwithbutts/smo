@@ -23,28 +23,44 @@ class SortTestQueue(TestByTestQueue):
         submission_id = len(self.id)
         self.id.append(0)
         testF -= 1
-        v = []
+        vv = []
         for i in range(len(testingTime)):
             p = 0
             if self.submits[taskInd]:
                 p = self.stats[taskInd][i] / self.submits[taskInd]
-            v.append([-p, i])
-        v.sort()
+            vv.append([-p, i])
+        vv.sort()
+        was = [0 for _ in range(len(testingTime))]
+        was[vv[0][1]] = 1
+        v = [vv[0][1]]
+        # if len(vv) > 1:
+        #     v.append(vv[1][1])
+        #     was[vv[1][1]] = 1
+        # if len(vv) > 2:
+        #     v.append(vv[2][1])
+        #     was[vv[2][1]] = 1
         for i in range(len(testingTime)):
-            if v[i][1] == testF:
+            v.append(vv[i][1])
+            was[vv[i][1]] = 1
+        for i in range(len(testingTime)):
+            if was[i] == 0:
+                v.append(i)
+                was[i] = 1
+        for i in range(len(testingTime)):
+            if v[i] == testF:
                 testF = i
                 break
         for i in range(len(testingTime) - 1):
-            self.id[submission_id] += testingTime[v[i][1]]  
+            self.id[submission_id] += testingTime[v[i]]  
             status = self.Status.skip_test
             if i == testF:
                 status = self.Status.wrong_test
-            self.queue.append([testingTime[v[i][1]], moment, status, [testF, taskInd, submission_id]])
+            self.queue.append([testingTime[v[i]], moment, status, [testF, taskInd, submission_id]])
 
-        self.id[submission_id] += testingTime[v[-1][1]]
+        self.id[submission_id] += testingTime[v[-1]]
         status = self.Status.skip_test
         if testF == len(testingTime) - 1:
             status = self.Status.wrong_test
         elif testF == -1:
             status = self.Status.final_test
-        self.queue.append([testingTime[v[-1][1]], moment, status, [testF, taskInd, submission_id]])
+        self.queue.append([testingTime[v[-1]], moment, status, [testF, taskInd, submission_id]])

@@ -1,14 +1,14 @@
 import scipy.stats as st
 def P(j):
-	return st.expon.cdf(j, 0, 20)
-file = open('parsed_data/parsed_s22', 'r')
+	return st.expon.cdf(j, 0, 10)
+file = open('../parsed_data/parsed', 'r')
 a = 0.1
 l1 = []
 for i in file.readlines():
 	l1.append(int(i[:-1]))
 l1.sort()
-l1 = l1[200:]
-N = 20
+l1 = l1[:100]
+N = 10
 mn = 1000000
 mx = 0
 l2 = []
