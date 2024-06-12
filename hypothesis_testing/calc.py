@@ -8,7 +8,7 @@ lam = 1 / 70
 
 mu = 1 / 30
 P = lam / mu
-n = 3
+n = 6
 p0 = 0
 nf = math.factorial(n)
 print(P / n)

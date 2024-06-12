@@ -2,8 +2,7 @@ import numpy as np
 import random
 
 class Queue(object):
-    def __init__(self, numberJudges, eps):
-        self.eps = eps
+    def __init__(self, numberJudges):
         self.queue = []
         self.waitTimes = []
         self.numberJudges = numberJudges
@@ -12,15 +11,15 @@ class Queue(object):
 
     def newTaskForJudge(self, judge, moment):
         if len(self.queue) != 0:
-            self.remainTimeOnJudge[judge] = self.queue[0][0]
-            self.startWaiting[judge] = self.queue[0][1]  
+            self.remainTimeOnJudge[judge] = self.queue[0].tl * self.queue[0].numberTests
+            self.startWaiting[judge] = self.queue[0].time  
             self.queue.pop(0)
 
     def freeJudge(self, moment, judge):
         self.waitTimes.append(moment - self.startWaiting[judge])
         self.startWaiting[judge] = None
 
-    def tact(self, moment):       
+    def tact(self, moment):
         # Iterate through judges 
         for judge in range(self.numberJudges):
 
@@ -35,12 +34,18 @@ class Queue(object):
                 # Begin process new request
                 self.newTaskForJudge(judge, moment)
 
-    def push(self, testingTime, moment):              
-        self.queue.append([testingTime, moment - len(self.queue) * self.eps])
+    def push(self, event):              
+        self.queue.append(event)
 
     def printStatistic(self):
         print(f"Max {self.__class__.__name__} time: ", max(self.waitTimes))          
         print(f"Average {self.__class__.__name__} time: ", np.mean(self.waitTimes)) 
+
+    def getMax(self):
+        return max(self.waitTimes)
+        
+    def getAverage(self):
+        return np.mean(self.waitTimes)
 
     def empty(self):        
         return len(self.queue) != 0 or max(self.remainTimeOnJudge) == 0

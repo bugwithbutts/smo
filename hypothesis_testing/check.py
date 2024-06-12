@@ -1,6 +1,6 @@
 import scipy.stats as st
 def P(j):
-	return st.expon.cdf(j, 0, 10)
+	return st.expon.cdf(j, 0, 8)
 file = open('../parsed_data/parsed', 'r')
 a = 0.1
 l1 = []
